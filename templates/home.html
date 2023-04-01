@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Usuários</title>
+</head>
+<body>
+    <h1>Lista de Usuários</h1>
+    <h2>Olá, {{nome}}</h2>
+    <h3>{{email}}</h3>
+    
+    {% if nivel==1 %}
+    <a href="/adicionar">Adicionar usuário</a>
+    {% endif %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Senha</th>
+                <th>Configurações</th>
+                {% if nivel==1 %}
+                <th>Nível de Acesso</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+            <tr>
+                <td>{{usuario[0]}}</td>
+                <td>{{usuario[1]}}</td>
+                <td>{{usuario[2]}}</td>
+                <td>{{usuario[3]}}</td>
+                <td>{{usuario[4]}}</td>
+                {% if nivel==1 %}
+                <td>
+                    <button><a href="/edit/{{ usuario[0] }}">Editar</a></button>
+                    <form action="/delete" method="post">
+                        <input type="hidden" name="idUser" id="idUser" value="{{ usuario[0] }}">
+                        <button type="submit">Deletar</button>
+                    </form>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/logout" class="logout">Logout</a>
+    <style>
+        
+table {
+  text-align: center;
+  border: 1px solid black;
+}
+th, td, tr {
+  border: 1px solid black;
+}
+button, a {
+  background: black;
+  color: white;
+  width: 100%;
+}
+    </style>
+</body>
+</html>
