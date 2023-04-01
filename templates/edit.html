@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Editar Usuário</title>
+</head>
+
+<body>
+    <h1>Editar Usuário</h1>
+    <form action="/edit/{{ usuario[0] }}" method="post">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" value="{{ usuario[1] }}" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" value="{{ usuario[2] }}" required>
+        <br>
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha" id="senha" value="{{ usuario[3] }}" required>
+        <br>
+        <label for="nivelAcesso">Nível de Acesso:</label>
+        <select name="nivelAcesso" id="nivelAcesso">
+            <option value="1" {% if usuario[4]==1 %}selected{% endif %}>Administrador</option>
+            <option value="2" {% if usuario[4]==2 %}selected{% endif %}>Usuário Comum</option>
+        </select>
+        <br>
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+
+</html>
